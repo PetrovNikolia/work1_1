@@ -1,4 +1,4 @@
-package com.example.work1_1.MyFileDao;
+package com.example.work1_1.myFileDao;
 
 import org.hibernate.annotations.GenericGenerator;
 

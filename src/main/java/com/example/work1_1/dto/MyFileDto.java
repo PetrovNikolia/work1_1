@@ -1,6 +1,6 @@
-package com.example.work1_1.Dto;
+package com.example.work1_1.dto;
 
-import com.example.work1_1.MyFileDao.MyFile;
+import com.example.work1_1.myFileDao.MyFile;
 
 import java.util.UUID;
 
@@ -32,6 +32,6 @@ public class MyFileDto {
     }
 
     public String getDownload(){
-        return "app/file" + uuid.toString();
+        return "app/file" + fileName;
     }
 }

@@ -1,6 +1,6 @@
-package com.example.work1_1.MyFileDao.repository;
+package com.example.work1_1.myFileDao.repository;
 
-import com.example.work1_1.MyFileDao.MyFile;
+import com.example.work1_1.myFileDao.MyFile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
