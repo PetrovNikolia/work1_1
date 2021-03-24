@@ -1,11 +1,13 @@
 package com.example.work1_1.myFileService.serviceImpl;
 
+import com.example.work1_1.dto.MyFileDto;
 import com.example.work1_1.myFileDao.MyFile;
 import com.example.work1_1.myFileDao.repository.MyFileRepository;
 import com.example.work1_1.myFileService.MyFileServiceDB;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -34,11 +36,12 @@ public class MyFileServiceBDImpl implements MyFileServiceDB {
 
     @Override
     public void deleteById(UUID id) {
+        local.deleteById(id);
         fileRepository.deleteById(id);
     }
 
     @Override
-    public void upload(MultipartFile file) throws IOException {
+    public MyFileDto upload(MultipartFile file) throws IOException {
 
         String fileName = file.getOriginalFilename();
 
@@ -49,6 +52,13 @@ public class MyFileServiceBDImpl implements MyFileServiceDB {
         MyFile save = fileRepository.save(myFile);
 
         local.upload(file,save.getId());
+
+        String downloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("api/v1/file/download?id=")
+                .path(save.getId().toString())
+                .toUriString();
+
+        return new MyFileDto(save.getId(),fileName,file.getContentType(),file.getSize(),fileUploadTime,downloadUri);
 
     }
 
@@ -61,6 +71,5 @@ public class MyFileServiceBDImpl implements MyFileServiceDB {
     public MyFile getFile(UUID id) {
         return fileRepository.getOne(id);
     }
-
 
 }

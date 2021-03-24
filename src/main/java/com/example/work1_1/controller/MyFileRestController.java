@@ -1,5 +1,6 @@
 package com.example.work1_1.controller;
 
+import com.example.work1_1.dto.MyFileDto;
 import com.example.work1_1.myFileDao.MyFile;
 import com.example.work1_1.myFileService.MyFileServiceDB;
 import com.example.work1_1.myFileService.MyFileServiceLocal;
@@ -36,8 +37,8 @@ public class MyFileRestController {
     }
 
     @PostMapping("/upload")
-    public void uploadFileLocal(@RequestBody MultipartFile file) throws IOException {
-        myFileServiceDB.upload(file);
+    public MyFileDto uploadFileLocal(@RequestBody MultipartFile file) throws IOException {
+         return myFileServiceDB.upload(file);
     }
 
     @GetMapping(path = "/download")
@@ -48,8 +49,8 @@ public class MyFileRestController {
                 .body(new ByteArrayResource(myFileServiceDB.downloadFile(id)));
     }
 
-    @DeleteMapping(path = "/{id}")
-    public void deleteFile(@PathVariable UUID id){
-        myFileServiceLocal.deleteById(id);
+    @DeleteMapping(path = "/")
+    public void deleteFile(@RequestParam UUID id){
+        myFileServiceDB.deleteById(id);
     }
 }

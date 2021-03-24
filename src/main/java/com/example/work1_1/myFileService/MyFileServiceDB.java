@@ -1,5 +1,6 @@
 package com.example.work1_1.myFileService;
 
+import com.example.work1_1.dto.MyFileDto;
 import com.example.work1_1.myFileDao.MyFile;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,9 +16,10 @@ public interface MyFileServiceDB {
 
     void deleteById(UUID id);
 
-    void upload(MultipartFile file) throws IOException;
+    MyFileDto upload(MultipartFile file) throws IOException;
 
     byte[] downloadFile(UUID id) throws IOException;
 
     MyFile getFile(UUID id);
+
 }

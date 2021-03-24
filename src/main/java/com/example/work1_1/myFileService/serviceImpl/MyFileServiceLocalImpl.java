@@ -62,7 +62,7 @@ public class MyFileServiceLocalImpl implements MyFileServiceLocal {
 
     }
 
-    private String findLocalFile(UUID id){
+    public String findLocalFile(UUID id){
         return fileUploadPath + "/" + id.toString();
     }
 }

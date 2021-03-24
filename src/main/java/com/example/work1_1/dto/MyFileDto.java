@@ -32,6 +32,6 @@ public class MyFileDto {
     }
 
     public String getDownload(){
-        return "app/file" + fileName;
+        return download;
     }
 }
